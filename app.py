@@ -52,8 +52,12 @@ def add_drink():
 
     return {"id":drink.id}
     
-@app.route('/drinks/del/<id>',methods=['DELETE'])
-def begone(id):
+@app.route('/drinks/del/',methods=['POST'])
+def begone():
+    data = request.json
+    id=data["id"]
+
+
     drink=Drink.query.get(id)
     if drink is None:
         return {"error":"no drink found"}
